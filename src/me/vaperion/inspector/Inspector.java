@@ -54,16 +54,16 @@ public class Inspector {
                 }
             }
 
-            if (!silent)System.out.println("[%] Running transformers...");
+            if (!silent) System.out.println("[%] Running transformers...");
             for (Transformer transformer : transformers) {
                 transformer.begin();
-                if (!silent)System.out.println(" - Running " + transformer.getClass().getSimpleName() + "...");
+                if (!silent) System.out.println(" - Running " + transformer.getClass().getSimpleName() + "...");
                 classes.forEach(transformer::visit);
                 transformer.finish();
             }
 
-            if (!silent)System.out.println("[%] Writing...");
-            if (!silent)System.out.println(" - Writing classes...");
+            if (!silent) System.out.println("[%] Writing...");
+            if (!silent) System.out.println(" - Writing classes...");
             for (ClassNode classNode : classes) {
                 ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
                 classNode.accept(writer);
@@ -71,7 +71,7 @@ public class Inspector {
                 out.write(writer.toByteArray());
             }
 
-            if (!silent)System.out.println(" - Writing generated classes...");
+            if (!silent) System.out.println(" - Writing generated classes...");
             for (ClassNode classNode : newClasses) {
                 ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
                 classNode.accept(writer);
